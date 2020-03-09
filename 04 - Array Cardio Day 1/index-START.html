@@ -33,27 +33,55 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    const fifteen = inventors.filter(inventor => {
-      if (inventor.year >= 1500 && inventor.year <= 1600) {
-        return true; //keep it!
-      }
-    })
-    console.table(fifteen);
+    const fifteen = inventors.filter(inventors => inventors.year >= 1500 && inventors.year <= 1600);
 
+    console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const fullNames = inventors.map(inventors => `${inventors.first} ${inventors.last}`);
+    console.table(fullNames);
+
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    // const ordered = inventors.sort(function (a, b) {
+    //   if (a.year > b.year) {
+    //     return 1;
+    //   } else {
+    //     return -1;
+    //   }
+    // });
+    // console.table(ordered);
+    // ? means if and : means or
+    const ordered = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+    console.table(ordered);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const totalYears = inventors.reduce((total, inventors) => {
+      return total + (inventors.passed - inventors.year);
+    }, 0);
+    console.table(totalYears);
 
     // 5. Sort the inventors by years lived
+    const oldest = inventors.sort((a, b) => {
+      const lastGuy = a.passed - a.year;
+      const nextDude = a.passed - a.year;
+      return lastGuy > nextDude ? -1 : 1;
+    });
+    console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    const category = document.querySelector('.mw-category');
+    const links = Array.from(category.querySelectorAll('a'));
+    const de = links
+      .map(link => link.textContent)
+      .filter(streetName => streetName.includes('de'));
+    // Stopped at 15:29
+
 
 
     // 7. sort Exercise
